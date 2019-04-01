@@ -1,5 +1,10 @@
 package card
 
+import (
+	"math/rand"
+	"time"
+)
+
 type Rank string
 type Suit string
 
@@ -8,8 +13,33 @@ type Card struct {
 	Suit Suit
 }
 
+type Deck struct {
+	Cards []Card
+}
+
+type Pile struct {
+	Cards []Card
+}
+
+func (d *Deck) Deal(n int) []Card {
+	deal := d.Cards[len(d.Cards) - 3:]
+	d.Cards = d.Cards[:len(d.Cards) - 3]
+	return deal
+}
+
 // Contains original deck of cards, unshuffled
 var RawDeck []Card
+
+// Shuffle creates a random permutation of index values from len(vals) and uses these to re-assign vals positions
+func Shuffle(vals []Card) []Card {
+	r := rand.New(rand.NewSource(time.Now().Unix()))
+	sDeck := make([]Card, len(vals))
+	perm := r.Perm(len(vals))
+	for i, randIndex := range perm {
+		sDeck[i] = vals[randIndex]
+	}
+	return sDeck
+}
 
 func CreateRawDeck() []Card {
 	return []Card{

@@ -1,20 +1,22 @@
 package main
 
 import (
-	"fmt"
-
-	"goshit/util"
 	"goshit/card"
+	"goshit/game"
+	"goshit/util"
 )
-
-
 
 func init() {}
 
 func main() {
+	var deck card.Deck
 	rawDeck := card.CreateRawDeck()
-	deck := util.Shuffle(rawDeck)
-	for i, c := range deck {
-		fmt.Println(i, c)
-	}
+	deck.Cards = card.Shuffle(rawDeck)
+
+	state := game.InitState()
+	state.InitPlayers(10, deck)
+
+
+	util.PrettyPrint(state)
+
 }
