@@ -1,6 +1,7 @@
 package game
 
 import (
+	"fmt"
 	c "goshit/card"
 	p "goshit/player"
 )
@@ -14,11 +15,27 @@ type State struct {
 func (s *State) InitPlayers(n int, deck c.Deck) {
 	for i := 0; i < n; i++ {
 		p := &p.Player{
-			Name: string(i),
-			Hand: deck.Deal(3),
-			Table: deck.Deal(3),
-			Blind: deck.Deal(3),
+			Name: fmt.Sprintf("Player %v", i + 1),
 		}
+
+		var err error
+
+		p.Hand, err = deck.Deal(3)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		p.Table, err = deck.Deal(3)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		p.Blind, err = deck.Deal(3)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+
 		s.Players = append(s.Players, p)
 	}
 }

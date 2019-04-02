@@ -4,9 +4,12 @@ import (
 	"goshit/card"
 	"goshit/game"
 	"goshit/util"
+	"runtime"
 )
 
-func init() {}
+func init() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
+}
 
 func main() {
 	var deck card.Deck
@@ -14,7 +17,7 @@ func main() {
 	deck.Cards = card.Shuffle(rawDeck)
 
 	state := game.InitState()
-	state.InitPlayers(10, deck)
+	state.InitPlayers(3, deck)
 
 
 	util.PrettyPrint(state)

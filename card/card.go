@@ -1,6 +1,7 @@
 package card
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -21,10 +22,26 @@ type Pile struct {
 	Cards []Card
 }
 
-func (d *Deck) Deal(n int) []Card {
+type DeckError struct {
+	desc, function string
+	err error
+}
+
+func (de *DeckError) Error() string {
+	return fmt.Sprintf("Deck Error: %v %v %v", de.desc, de.function, de.err)
+}
+
+// TODO: Deal is going to be used program wide in a number of places. Does it need to prevent errors itself (ie no cards left?)
+func (d *Deck) Deal(n int) ([]Card, error) {
+	if(len(d.Cards) < n) {
+		err := fmt.Errorf("Insufficient cards. Attempted to deal %v cards", n)
+		de := &DeckError{"DeckError", "func (d * Deck) Deal(n int) []Card, error {}", err}
+		return nil, de
+	}
+
 	deal := d.Cards[len(d.Cards) - 3:]
 	d.Cards = d.Cards[:len(d.Cards) - 3]
-	return deal
+	return deal, nil
 }
 
 // Contains original deck of cards, unshuffled
