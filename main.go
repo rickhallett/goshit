@@ -23,6 +23,15 @@ func main() {
 	//p1.SwitchCard(1, 1)
 	//util.PrintPlayerCards(p1)
 	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
+	p1.PlayCard(1, state)
 	game.PrintPlayerHand(p1)
 
 }

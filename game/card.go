@@ -37,6 +37,7 @@ func (de *deckError) addMsg(msg string) {
 }
 
 // TODO: Deal is going to be used program wide in a number of places. Does it need to prevent errors itself (ie no cards left?)
+// TODO: slice operations not always removing top card; look into this
 func (d *Deck) deal(n int) ([]Card, *deckError) {
 	if len(d.Cards) < n {
 		err := fmt.Errorf("Insufficient cards. Attempted to deal %v cards", n)
