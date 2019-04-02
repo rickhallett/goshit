@@ -41,6 +41,10 @@ func (s *State) InitPlayers(n int, deck c.Deck) {
 			fmt.Println(err)
 		}
 
+		if p.CardsReady() {
+			fmt.Printf("Player %s is ready to play!\n", p.Name)
+		}
+
 
 		s.Players = append(s.Players, p)
 	}

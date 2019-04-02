@@ -11,3 +11,11 @@ type Player struct {
 	Blind []c.Card
 	Turns int
 }
+
+func (p *Player) CardsReady() bool {
+	if p.Hand != nil && p.Table != nil && p.Blind != nil {
+		return true
+	}
+
+	return false
+}
