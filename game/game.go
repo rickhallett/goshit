@@ -11,7 +11,7 @@ type state struct {
 	Deck    Deck
 }
 
-func (s *state) InitPlayers(n int, deck Deck) {
+func (s *state) InitPlayers(n int, deck *Deck) {
 	for i := 0; i < n; i++ {
 		p := &Player{
 			Name: fmt.Sprintf("Player %v", i + 1),

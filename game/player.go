@@ -30,7 +30,7 @@ func (p *Player) SwitchCard(fromhand, totable int) {
 }
 
 func (p *Player) PlayCard(num int, state *state) {
-	var err *deckError
+	var err *deckError // 2h, jd, 9s
 	var newCard []Card
 
 	playCard := p.Hand[num-1]
