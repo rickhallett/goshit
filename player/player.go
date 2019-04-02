@@ -1,6 +1,7 @@
 package player
 
 import (
+	"fmt"
 	c "goshit/card"
 )
 
@@ -20,6 +21,11 @@ func (p *Player) CardsReady() bool {
 	return false
 }
 
-func (p *Player) SwitchCard(from, to []c.Card, cardA, cardB c.Card) {
-
+func (p *Player) SwitchCard(fromHand, toTable int) {
+	handCard := p.Hand[fromHand - 1]
+	tableCard := p.Table[toTable - 1]
+	p.Hand[fromHand - 1] = tableCard
+	p.Table[toTable - 1] = handCard
+	fmt.Printf("%s swapped '%v %v' from their hand with the '%v %v' on the table",
+		p.Name, handCard.Rank, handCard.Suit, tableCard.Rank, tableCard.Suit)
 }

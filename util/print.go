@@ -14,9 +14,9 @@ func PrettyPrint(message ...interface{}) {
 }
 
 func PrintPlayerCards(p *player.Player) {
-	fmt.Printf("Player Hand: \t1: %v %v \t2: %v %v \t3: %v %v \n" +
+	fmt.Printf("\nPlayer Hand: \t1: %v %v \t2: %v %v \t3: %v %v \n" +
 		"Player Table: \t1: %v %v \t2: %v %v \t3: %v %v \n" +
-		"Player Blind: \t1: ? ? \t\t2: ? ? \t\t3: ? ?\n",
+		"Player Blind: \t1: ? ? \t\t2: ? ? \t\t3: ? ?\n\n",
 		p.Hand[0].Rank, p.Hand[0].Suit,
 		p.Hand[1].Rank, p.Hand[1].Suit,
 		p.Hand[2].Rank, p.Hand[2].Suit,

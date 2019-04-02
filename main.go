@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"goshit/card"
 	"goshit/game"
 	"goshit/util"
@@ -22,6 +23,8 @@ func main() {
 
 	p1 := state.Players[0]
 	util.PrintPlayerCards(p1)
-	p1.SwitchCard(p1.Hand, p1.Table, p1.Hand[0], p1.Table[0])
+	p1.SwitchCard(2, 2)
+	fmt.Println("")
+	util.PrintPlayerCards(p1)
 
 }
