@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"goshit/game"
 	"runtime"
 )
@@ -22,6 +23,7 @@ func main() {
 	//util.PrintPlayerCards(p1)
 	//p1.SwitchCard(1, 1)
 	//util.PrintPlayerCards(p1)
+	fmt.Println("Deck length:", len(state.Deck.Cards))
 	p1.PlayCard(1, state)
 	p1.PlayCard(1, state)
 	p1.PlayCard(1, state)
@@ -48,7 +50,7 @@ func main() {
 	p1.PlayCard(1, state)
 	p1.PlayCard(1, state)
 	p1.PlayCard(1, state)
-	p1.PlayCard(1, state)
+	fmt.Println("Deck length:", len(state.Deck.Cards))
 	p1.PlayCard(1, state)
 	p1.PlayCard(1, state)
 	p1.PlayCard(1, state)

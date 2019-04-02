@@ -4,6 +4,19 @@ import (
 	"fmt"
 )
 
+type playerError struct {
+	additionalMsgs []string
+	err error
+}
+
+func (pe *playerError) Error() string {
+	return fmt.Sprintf("Player Error: %v %v", pe.additionalMsgs, pe.err)
+}
+
+func (pe *playerError) addMsg(msg string) {
+	pe.additionalMsgs = append(pe.additionalMsgs, msg)
+}
+
 type Player struct {
 	Name  string
 	Hand  []Card
@@ -29,12 +42,20 @@ func (p *Player) SwitchCard(fromhand, totable int) {
 		p.Name, handCard.Rank, handCard.Suit, tableCard.Rank, tableCard.Suit)
 }
 
+// TODO: refactor this so that it has a common error pathway that returns to callee, less if/else statements
 func (p *Player) PlayCard(num int, state *state) {
 	var err *deckError // 2h, jd, 9s
 	var newCard []Card
 
 	playCard := p.Hand[num-1]
-	state.Pile.takeCard(playCard)
+	if playCard == (Card{}) {
+		err := fmt.Errorf("No card to play. Attempted to play card position %v", num)
+		pe := &playerError{[]string{}, err}
+		fmt.Println(pe)
+	} else {
+		p.Hand[num-1] = Card{}
+		state.Pile.takeCard(playCard)
+	}
 
 	newCard, err = state.Deck.deal(1)
 	if err != nil {
