@@ -6,7 +6,7 @@ import (
 
 type playerError struct {
 	additionalMsgs []string
-	err error
+	err            error
 }
 
 func (pe *playerError) Error() string {
@@ -54,7 +54,7 @@ func (p *Player) PlayCard(num int, state *state) {
 		fmt.Println(pe)
 	} else {
 		p.Hand[num-1] = Card{}
-		state.Pile.takeCard(playCard)
+		state.Pile.takeCard(playCard, p)
 	}
 
 	newCard, err = state.Deck.deal(1)

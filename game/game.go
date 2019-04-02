@@ -14,7 +14,7 @@ type state struct {
 func (s *state) InitPlayers(n int, deck *Deck) {
 	for i := 0; i < n; i++ {
 		p := &Player{
-			Name: fmt.Sprintf("Player %v", i + 1),
+			Name: fmt.Sprintf("Player %v", i+1),
 		}
 
 		var err *deckError
@@ -43,7 +43,6 @@ func (s *state) InitPlayers(n int, deck *Deck) {
 		if p.CardsReady() {
 			fmt.Printf("%s is ready to play!\n", p.Name)
 		}
-
 
 		s.Players = append(s.Players, p)
 	}

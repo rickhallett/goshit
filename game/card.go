@@ -48,9 +48,9 @@ func (d *Deck) deal(n int) ([]Card, *deckError) {
 	return deal, nil
 }
 
-func (p *Pile) takeCard(c Card) {
+func (p *Pile) takeCard(c Card, pl *Player) {
 	p.Cards = append(p.Cards, c)
-	fmt.Printf("Placed %v %v onto pile\n", c.Rank, c.Suit)
+	fmt.Printf("%s placed %v %v onto pile\n", pl.Name, c.Rank, c.Suit)
 }
 
 // Shuffle creates a random permutation of index values from len(vals) and uses these to re-assign vals positions
