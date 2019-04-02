@@ -3,7 +3,6 @@ package main
 import (
 	"goshit/card"
 	"goshit/game"
-	"goshit/util"
 	"runtime"
 )
 
@@ -17,9 +16,9 @@ func main() {
 	deck.Cards = card.Shuffle(rawDeck)
 
 	state := game.InitState()
-	state.InitPlayers(3, deck)
+	state.InitPlayers(7, deck)
 
 
-	util.PrettyPrint(state)
+	//util.PrettyPrint(state)
 
 }

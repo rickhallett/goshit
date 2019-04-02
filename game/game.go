@@ -18,20 +18,26 @@ func (s *State) InitPlayers(n int, deck c.Deck) {
 			Name: fmt.Sprintf("Player %v", i + 1),
 		}
 
-		var err error
+		var err *c.DeckError
 
 		p.Hand, err = deck.Deal(3)
 		if err != nil {
+			err.AddMsg(fmt.Sprintf("Player name: %s", p.Name))
+			err.AddMsg(fmt.Sprint("Attempted deal to hand"))
 			fmt.Println(err)
 		}
 
 		p.Table, err = deck.Deal(3)
 		if err != nil {
+			err.AddMsg(fmt.Sprintf("Player name: %s", p.Name))
+			err.AddMsg(fmt.Sprint("Attempted deal to table"))
 			fmt.Println(err)
 		}
 
 		p.Blind, err = deck.Deal(3)
 		if err != nil {
+			err.AddMsg(fmt.Sprintf("Player name: %s", p.Name))
+			err.AddMsg(fmt.Sprint("Attempted deal to blind"))
 			fmt.Println(err)
 		}
 
