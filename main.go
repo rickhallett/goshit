@@ -15,9 +15,7 @@ func main() {
 	//var deck card.Deck
 	state := game.InitState()
 	rawDeck := card.CreateRawDeck()
-
 	state.Deck.Cards = card.Shuffle(rawDeck)
-
 	state.InitPlayers(3, state.Deck)
 	//util.PrettyPrint(state)
 
@@ -26,5 +24,6 @@ func main() {
 	//util.PrintPlayerCards(p1)
 	//p1.SwitchCard(1, 1)
 	//util.PrintPlayerCards(p1)
+	p1.PlayCard(1, state)
 
 }

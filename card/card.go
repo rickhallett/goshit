@@ -25,7 +25,7 @@ type Pile struct {
 // How to initialise: var err *c.DeckError, if err != nil {}
 type DeckError struct {
 	AdditionalMsgs []string
-	err error
+	err            error
 }
 
 func (de *DeckError) Error() string {
@@ -38,15 +38,20 @@ func (de *DeckError) AddMsg(msg string) {
 
 // TODO: Deal is going to be used program wide in a number of places. Does it need to prevent errors itself (ie no cards left?)
 func (d *Deck) Deal(n int) ([]Card, *DeckError) {
-	if(len(d.Cards) < n) {
+	if len(d.Cards) < n {
 		err := fmt.Errorf("Insufficient cards. Attempted to deal %v cards", n)
 		de := &DeckError{[]string{}, err}
 		return nil, de
 	}
 
-	deal := d.Cards[len(d.Cards) - 3:]
-	d.Cards = d.Cards[:len(d.Cards) - 3]
+	deal := d.Cards[len(d.Cards)-3:]
+	d.Cards = d.Cards[:len(d.Cards)-3]
 	return deal, nil
+}
+
+func (p *Pile) TakeCard(c Card) {
+	p.Cards = append(p.Cards, c)
+	fmt.Printf("Placed %v %v onto pile", c.Rank, c.Suit)
 }
 
 // Contains original deck of cards, unshuffled
