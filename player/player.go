@@ -26,6 +26,10 @@ func (p *Player) SwitchCard(fromHand, toTable int) {
 	tableCard := p.Table[toTable - 1]
 	p.Hand[fromHand - 1] = tableCard
 	p.Table[toTable - 1] = handCard
-	fmt.Printf("%s swapped '%v %v' from their hand with the '%v %v' on the table",
+	fmt.Printf("%s swapped '%v %v' from their hand with the '%v %v' on the table\n",
 		p.Name, handCard.Rank, handCard.Suit, tableCard.Rank, tableCard.Suit)
+}
+
+func (p *Player) PlayCard(num int, pile c.Pile) {
+
 }

@@ -24,3 +24,11 @@ func PrintPlayerCards(p *player.Player) {
 		p.Table[1].Rank, p.Table[1].Suit,
 		p.Table[2].Rank, p.Table[2].Suit)
 }
+
+func PrintPlayerHand(p *player.Player) {
+	fmt.Printf("Player Hand: \t")
+	for i, v := range p.Hand {
+		fmt.Printf("%v: %v %v \t", i + 1, v.Rank, v.Suit)
+	}
+	fmt.Printf("\n")
+}
