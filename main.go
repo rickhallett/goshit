@@ -12,12 +12,13 @@ func init() {
 }
 
 func main() {
-	var deck card.Deck
-	rawDeck := card.CreateRawDeck()
-	deck.Cards = card.Shuffle(rawDeck)
-
+	//var deck card.Deck
 	state := game.InitState()
-	state.InitPlayers(3, deck)
+	rawDeck := card.CreateRawDeck()
+
+	state.Deck.Cards = card.Shuffle(rawDeck)
+
+	state.InitPlayers(3, state.Deck)
 	//util.PrettyPrint(state)
 
 	p1 := state.Players[0]

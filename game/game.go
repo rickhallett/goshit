@@ -9,7 +9,8 @@ import (
 type State struct {
 	Players []*p.Player
 	Active *p.Player
-	Pile []c.Card
+	Pile c.Pile
+	Deck c.Deck
 }
 
 func (s *State) InitPlayers(n int, deck c.Deck) {
