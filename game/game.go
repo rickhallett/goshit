@@ -2,43 +2,41 @@ package game
 
 import (
 	"fmt"
-	c "goshit/card"
-	p "goshit/player"
 )
 
-type State struct {
-	Players []*p.Player
-	Active *p.Player
-	Pile c.Pile
-	Deck c.Deck
+type state struct {
+	Players []*Player
+	Active  *Player
+	Pile    Pile
+	Deck    Deck
 }
 
-func (s *State) InitPlayers(n int, deck c.Deck) {
+func (s *state) InitPlayers(n int, deck Deck) {
 	for i := 0; i < n; i++ {
-		p := &p.Player{
+		p := &Player{
 			Name: fmt.Sprintf("Player %v", i + 1),
 		}
 
-		var err *c.DeckError
+		var err *deckError
 
-		p.Hand, err = deck.Deal(3)
+		p.Hand, err = deck.deal(3)
 		if err != nil {
-			err.AddMsg(fmt.Sprintf("Player name: %s", p.Name))
-			err.AddMsg(fmt.Sprint("Attempted deal to hand"))
+			err.addMsg(fmt.Sprintf("Player name: %s", p.Name))
+			err.addMsg(fmt.Sprint("Attempted deal to hand"))
 			fmt.Println(err)
 		}
 
-		p.Table, err = deck.Deal(3)
+		p.Table, err = deck.deal(3)
 		if err != nil {
-			err.AddMsg(fmt.Sprintf("Player name: %s", p.Name))
-			err.AddMsg(fmt.Sprint("Attempted deal to table"))
+			err.addMsg(fmt.Sprintf("Player name: %s", p.Name))
+			err.addMsg(fmt.Sprint("Attempted deal to table"))
 			fmt.Println(err)
 		}
 
-		p.Blind, err = deck.Deal(3)
+		p.Blind, err = deck.deal(3)
 		if err != nil {
-			err.AddMsg(fmt.Sprintf("Player name: %s", p.Name))
-			err.AddMsg(fmt.Sprint("Attempted deal to blind"))
+			err.addMsg(fmt.Sprintf("Player name: %s", p.Name))
+			err.addMsg(fmt.Sprint("Attempted deal to blind"))
 			fmt.Println(err)
 		}
 
@@ -51,6 +49,6 @@ func (s *State) InitPlayers(n int, deck c.Deck) {
 	}
 }
 
-func InitState() *State {
-	return &State{}
+func InitState() *state {
+	return &state{}
 }

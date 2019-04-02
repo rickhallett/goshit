@@ -1,9 +1,8 @@
-package util
+package game
 
 import (
 	"encoding/json"
 	"fmt"
-	"goshit/player"
 )
 
 func PrettyPrint(message ...interface{}) {
@@ -13,9 +12,9 @@ func PrettyPrint(message ...interface{}) {
 	}
 }
 
-func PrintPlayerCards(p *player.Player) {
-	fmt.Printf("\nPlayer Hand: \t1: %v %v \t2: %v %v \t3: %v %v \n"+
-		"Player Table: \t1: %v %v \t2: %v %v \t3: %v %v \n"+
+func PrintPlayerCards(p *Player) {
+	fmt.Printf("\nPlayer hand: \t1: %v %v \t2: %v %v \t3: %v %v \n"+
+		"Player table: \t1: %v %v \t2: %v %v \t3: %v %v \n"+
 		"Player Blind: \t1: ? ? \t\t2: ? ? \t\t3: ? ?\n\n",
 		p.Hand[0].Rank, p.Hand[0].Suit,
 		p.Hand[1].Rank, p.Hand[1].Suit,
@@ -25,8 +24,8 @@ func PrintPlayerCards(p *player.Player) {
 		p.Table[2].Rank, p.Table[2].Suit)
 }
 
-func PrintPlayerHand(p *player.Player) {
-	fmt.Printf("Player Hand: \t")
+func PrintPlayerHand(p *Player) {
+	fmt.Printf("Player hand: \t")
 	for i, v := range p.Hand {
 		fmt.Printf("%v: %v %v \t", i+1, v.Rank, v.Suit)
 	}

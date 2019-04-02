@@ -1,4 +1,4 @@
-package card
+package game
 
 import (
 	"fmt"
@@ -23,39 +23,36 @@ type Pile struct {
 }
 
 // How to initialise: var err *c.DeckError, if err != nil {}
-type DeckError struct {
-	AdditionalMsgs []string
+type deckError struct {
+	additionalMsgs []string
 	err            error
 }
 
-func (de *DeckError) Error() string {
-	return fmt.Sprintf("Deck Error: %v %v", de.AdditionalMsgs, de.err)
+func (de *deckError) Error() string {
+	return fmt.Sprintf("Deck Error: %v %v", de.additionalMsgs, de.err)
 }
 
-func (de *DeckError) AddMsg(msg string) {
-	de.AdditionalMsgs = append(de.AdditionalMsgs, msg)
+func (de *deckError) addMsg(msg string) {
+	de.additionalMsgs = append(de.additionalMsgs, msg)
 }
 
 // TODO: Deal is going to be used program wide in a number of places. Does it need to prevent errors itself (ie no cards left?)
-func (d *Deck) Deal(n int) ([]Card, *DeckError) {
+func (d *Deck) deal(n int) ([]Card, *deckError) {
 	if len(d.Cards) < n {
 		err := fmt.Errorf("Insufficient cards. Attempted to deal %v cards", n)
-		de := &DeckError{[]string{}, err}
+		de := &deckError{[]string{}, err}
 		return nil, de
 	}
 
-	deal := d.Cards[len(d.Cards)-3:]
-	d.Cards = d.Cards[:len(d.Cards)-3]
+	deal := d.Cards[len(d.Cards)-n:]
+	d.Cards = d.Cards[:len(d.Cards)-n]
 	return deal, nil
 }
 
-func (p *Pile) TakeCard(c Card) {
+func (p *Pile) takeCard(c Card) {
 	p.Cards = append(p.Cards, c)
-	fmt.Printf("Placed %v %v onto pile", c.Rank, c.Suit)
+	fmt.Printf("Placed %v %v onto pile\n", c.Rank, c.Suit)
 }
-
-// Contains original deck of cards, unshuffled
-var RawDeck []Card
 
 // Shuffle creates a random permutation of index values from len(vals) and uses these to re-assign vals positions
 func Shuffle(vals []Card) []Card {
