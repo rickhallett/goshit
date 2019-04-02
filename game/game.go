@@ -42,7 +42,7 @@ func (s *State) InitPlayers(n int, deck c.Deck) {
 		}
 
 		if p.CardsReady() {
-			fmt.Printf("Player %s is ready to play!\n", p.Name)
+			fmt.Printf("%s is ready to play!\n", p.Name)
 		}
 
 

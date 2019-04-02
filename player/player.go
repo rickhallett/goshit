@@ -19,3 +19,7 @@ func (p *Player) CardsReady() bool {
 
 	return false
 }
+
+func (p *Player) SwitchCard(from, to []c.Card, cardA, cardB c.Card) {
+
+}
